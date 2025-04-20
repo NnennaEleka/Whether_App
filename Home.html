@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>Home Page</title>
+        <script src="javascript/Home.js" defer></script>
+        <style>
+        body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #e0f7fa;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        }
+        #weather-container {
+        background-color: #ffffff;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+        }
+        select, button {
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        font-size: 1rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        }
+        button {
+        background-color: #2196f3;
+        color: white;
+        cursor: pointer;
+        }
+        button:hover {
+        background-color: #1976d2;
+        }
+        .error {
+        color: red;
+        }
+        </style>
+    </head>
+
+    <body>
+    <h2>Select Your College Campus 🎓</h2>
+    <select id="collegeSelect">
+    <option value="">-- Choose a College --</option>
+    </select>
+
+    <button onclick="getWeather()">Get Weather</button>
+    <button onclick="testWeatherAPI()">Test WeatherStack API</button>
+
+    <div id="weather-container" style="margin-top: 1rem;">
+    <p id="location">Select a college to see the weather</p>
+    <p id="temperature"></p>
+    <p id="description"></p>
+    </div>
+        
+    </body>
+</html>
