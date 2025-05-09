@@ -1,59 +1,61 @@
 <html>
-    <head>
-        <title>Home Page</title>
-        <script src="javascript/Home.js" defer></script>
-        <style>
-        body {
-        font-family: 'Segoe UI', sans-serif;
-        background-color: #e0f7fa;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 2rem;
-        }
-        #weather-container {
-        background-color: #ffffff;
-        padding: 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        width: 300px;
-        text-align: center;
-        }
-        select, button {
-        padding: 0.5rem;
-        margin-top: 0.5rem;
-        font-size: 1rem;
-        border-radius: 6px;
-        border: 1px solid #ccc;
-        }
-        button {
-        background-color: #2196f3;
-        color: white;
-        cursor: pointer;
-        }
-        button:hover {
-        background-color: #1976d2;
-        }
-        .error {
-        color: red;
-        }
-        </style>
-    </head>
+  <head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="javascript/home.js" defer></script>
+  </head>
 
-    <body>
+  <body>
+    <!-- Top Navigation -->
+    <nav class="navbar">
+      <a href="help.html" class="nav-left">🔍 Help </a>
+      <a href="about.html" class="nav-right">ℹ️ About </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+      <h1>🌤️Whether🌤️</h1>
+
+      <!-- Location Input -->
+      <div class="location-input">
+        <label for="collegeSelect" class="visually-hidden">Location</label>
+        <select id="collegeSelect" onchange="getWeather()">
+          <option value="">-- Choose a College or State --</option>
+          <option value="College Park, MD">
+            University of Maryland - College Park, MD
+          </option>
+        </select>
+      </div>
+
+      <!-- Weather Display -->
+      <div id="weather-container">
+        <p id="location">Select a location to see the weather</p>
+        <p id="temperature"></p>
+        <p id="description"></p>
+        <p id="hashtag"></p>
+      </div>
+    </main>
+
+    <!-- <h1>🌤️Whether🌤️</h1>
+
     <h2>Select Your College Campus 🎓</h2>
     <select id="collegeSelect">
-    <option value="">-- Choose a College --</option>
+      <option value="">-- Choose a College --</option>
     </select>
 
     <button onclick="getWeather()">Get Weather</button>
     <button onclick="testWeatherAPI()">Test WeatherStack API</button>
 
-    <div id="weather-container" style="margin-top: 1rem;">
-    <p id="location">Select a college to see the weather</p>
-    <p id="temperature"></p>
-    <p id="description"></p>
-    </div>
-        
-    </body>
+    <div id="weather-container" style="margin-top: 1rem">
+      <p id="location">Select a college to see the weather</p>
+      <p id="temperature"></p>
+      <p id="description"></p>
+    </div> -->
+
+    <!-- Persistent Footer -->
+    <footer class="footer">
+      <a href="home.html" class="footer-left">🌦️ Home </a>
+      <a href="forum.html" class="footer-right">🧥 Outfit </a>
+    </footer>
+  </body>
 </html>
