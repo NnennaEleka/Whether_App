@@ -1,8 +1,7 @@
 <html>
   <head>
-    <title>Home Page</title>
+    <title>Outfit Recs - Whether</title>
     <link rel="stylesheet" href="styles.css" />
-    <script src="javascript/home.js" defer></script>
   </head>
 
   <body>
@@ -12,13 +11,15 @@
       <a href="about.html" class="nav-right">ℹ️ About </a>
     </nav>
 
-    <!-- Main Content -->
-    <main>
-      <h1>🌤️Whether🌤️</h1>
+    <header>
+      <h1>🧥 Outfit Recommender</h1>
+    </header>
 
-      <!-- Location Input -->
+    <main>
       <div class="location-input">
-        <label for="collegeSelect" class="visually-hidden">Location</label>
+        <label for="collegeSelect" class="visually-hidden"
+          >Select Location</label
+        >
         <select id="collegeSelect" onchange="getWeather()">
           <option value="">-- Choose a College or State --</option>
           <option value="College Park, MD">
@@ -80,34 +81,28 @@
         </select>
       </div>
 
-      <!-- Weather Display -->
-      <div id="weather-container">
-        <p id="location">📍Select a location to see the weather</p>
-        <p id="temperature"></p>
+      <div id="weather-display">
+        <p id="location">📍 Choose a location to get started</p>
         <p id="description"></p>
-        <p id="hashtag"></p>
       </div>
+
+      <div id="character-display">
+        <img
+          id="weather-character"
+          src="images/default.jpg"
+          alt="Character Outfit"
+          width="200"
+        />
+      </div>
+
+      <p id="outfit-suggestion">
+        Outfit recommendation will appear here based on weather
+      </p>
     </main>
-
-    <!-- <h1>🌤️Whether🌤️</h1>
-
-    <h2>Select Your College Campus 🎓</h2>
-    <select id="collegeSelect">
-      <option value="">-- Choose a College --</option>
-    </select>
-
-    <button onclick="getWeather()">Get Weather</button>
-    <button onclick="testWeatherAPI()">Test WeatherStack API</button>
-
-    <div id="weather-container" style="margin-top: 1rem">
-      <p id="location">Select a college to see the weather</p>
-      <p id="temperature"></p>
-      <p id="description"></p>
-    </div> -->
 
     <!-- Persistent Footer -->
     <footer class="footer">
-      <a href="forum.html">💬 Forum </a>
+      <a href="forum.html">💬 Forum</a>
       <a href="home.html" class="footer-left">🌦️ Home </a>
       <a href="outfit.html" class="footer-right">🧥 Outfit </a>
     </footer>

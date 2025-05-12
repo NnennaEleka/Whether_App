@@ -134,6 +134,8 @@ function generateHashtag(description) {
   return `#${lowerDesc.split(" ")[0]}`;
 }
 
+
+
 function testWeatherAPI() {
   const testCity = "New York";
 
