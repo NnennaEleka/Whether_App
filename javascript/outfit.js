@@ -1,62 +1,63 @@
-const weatherstackKey = "8c2835d0af81eeb0484e866b8a716d7b"; // Replace with your key
+const apiKey = '8c2835d0af81eeb0484e866b8a716d7b'; // Use your API key
 
 function getWeather() {
-const selectedCollege = document.getElementById("collegeInput").value.trim();
-  if (!selectedCollege) return;
+  const select = document.getElementById('collegeSelect');
+  const location = select.value;
 
-  document.getElementById("location").textContent = "Loading weather...";
-  document.getElementById("description").textContent = "";
-  document.getElementById("outfit-suggestion").textContent = "";
-  document.getElementById("weather-character").src = "images/default.png";
+  if (!location) return;
 
-  const query = encodeURIComponent(selectedCollege);
-  const url = `http://api.weatherstack.com/current?access_key=${weatherstackKey}&query=${query}`;
+  const weatherstackURL = `http://api.weatherstack.com/current?access_key=${apiKey}&query=${encodeURIComponent(location)}`;
+  const proxyURL = `https://api.allorigins.win/get?url=${encodeURIComponent(weatherstackURL)}`;
 
-  fetch(url)
+  fetch(proxyURL)
     .then(response => response.json())
     .then(data => {
-      if (!data.current) {
-        document.getElementById("location").textContent = "Error loading weather.";
-        return;
+      try {
+        const parsed = JSON.parse(data.contents);
+        if (!parsed || !parsed.current) {
+          throw new Error("Weather data unavailable.");
+        }
+
+        const description = parsed.current.weather_descriptions[0];
+        const temp = parsed.current.temperature;
+
+        updateOutfit(description, temp);
+        document.getElementById('location').textContent = `📍 ${location}`;
+        document.getElementById('description').textContent = `🌡️ ${temp}°F - ${description}`;
+      } catch (err) {
+        console.error('Parsing error:', err);
+        document.getElementById('description').textContent = '⚠️ Weather info unavailable.';
       }
-
-      const city = data.location.name;
-      const region = data.location.region;
-      const desc = data.current.weather_descriptions[0];
-
-      document.getElementById("location").textContent = `📍 ${city}, ${region}`;
-      document.getElementById("description").textContent = `☁️ ${desc}`;
-
-      suggestOutfit(desc);
     })
     .catch(error => {
-      console.error("Fetch error:", error);
-      document.getElementById("location").textContent = "Failed to get weather.";
+      console.error('Fetch error:', error);
+      document.getElementById('description').textContent = '⚠️ Failed to fetch weather.';
     });
 }
 
-function suggestOutfit(description) {
-  const lowerDesc = description.toLowerCase();
-  const characterImg = document.getElementById("weather-character");
-  const outfitText = document.getElementById("outfit-suggestion");
+function updateOutfit(description, temp) {
+  const suggestion = document.getElementById('outfit-suggestion');
+  const characterImg = document.getElementById('weather-character');
 
-  if (lowerDesc.includes("rain")) {
-    characterImg.src = "images/raincoat.png";
-    outfitText.textContent = "It's rainy! Wear a raincoat and waterproof shoes.";
-  } else if (lowerDesc.includes("snow")) {
-    characterImg.src = "images/snow.png";
-    outfitText.textContent = "Snowy weather! Bundle up with a coat, gloves, and boots.";
-  } else if (lowerDesc.includes("sunny")) {
-    characterImg.src = "images/sunny.png";
-    outfitText.textContent = "Sunny skies! Go for light clothing and sunglasses.";
-  } else if (lowerDesc.includes("cloudy")) {
-    characterImg.src = "images/cloudy.png";
-    outfitText.textContent = "Cloudy out! Wear layers in case it cools down.";
-  } else if (lowerDesc.includes("fog")) {
-    characterImg.src = "images/foggy.png";
-    outfitText.textContent = "It's foggy! Be visible and wear warm layers.";
+  const desc = description.toLowerCase();
+
+  if (desc.includes('rain')) {
+    characterImg.src = 'images/outfit-rainy.png';
+    suggestion.textContent = '🌧 Rainy — Bring a raincoat and umbrella.';
+  } else if (desc.includes('snow')) {
+    characterImg.src = 'images/outfit-snowy.png';
+    suggestion.textContent = '❄️ Snowy — Bundle up with coat, boots, and scarf!';
+  } else if (temp < 50) {
+    characterImg.src = 'images/outfit-cold.png';
+    suggestion.textContent = '🧥 Chilly — Wear a jacket or hoodie.';
+  } else if (temp >= 50 && temp < 75) {
+    characterImg.src = 'images/outfit-mild.png';
+    suggestion.textContent = '👕 Mild — Long sleeves or light layers recommended.';
+  } else if (temp >= 75) {
+    characterImg.src = 'images/outfit-hot.png';
+    suggestion.textContent = '😎 Hot — T-shirt and shorts weather!';
   } else {
-    characterImg.src = "images/default.jpg";
-    outfitText.textContent = "Weather unknown — dress comfortably and check for updates!";
+    characterImg.src = 'images/default.jpg';
+    suggestion.textContent = '👚 Weather unclear — Dress comfortably.';
   }
 }
