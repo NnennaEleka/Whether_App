@@ -3,6 +3,7 @@
     <title>Home Page</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="javascript/home.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 
   <body>
@@ -17,8 +18,8 @@
     </nav>
 
     <!-- Main Content -->
-    <main>
-      <h1>🌤️Whether🌤️</h1>
+    <main class="home-card">
+      <h1 class="home-title">🌤️ Whether 🌤️</h1>
 
       <!-- Location Input -->
       <div class="location-input">
@@ -91,23 +92,10 @@
         <p id="description"></p>
         <p id="hashtag"></p>
       </div>
+
+      <canvas id="tempChart" width="400" height="200"></canvas>
+
     </main>
-
-    <!-- <h1>🌤️Whether🌤️</h1>
-
-    <h2>Select Your College Campus 🎓</h2>
-    <select id="collegeSelect">
-      <option value="">-- Choose a College --</option>
-    </select>
-
-    <button onclick="getWeather()">Get Weather</button>
-    <button onclick="testWeatherAPI()">Test WeatherStack API</button>
-
-    <div id="weather-container" style="margin-top: 1rem">
-      <p id="location">Select a college to see the weather</p>
-      <p id="temperature"></p>
-      <p id="description"></p>
-    </div> -->
 
     <!-- Persistent Footer -->
     <footer class="footer">

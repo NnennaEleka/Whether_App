@@ -3,6 +3,7 @@
     <title>Outfit Recs - Whether</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="javascript/outfit.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/typeit@8.7.1/dist/index.umd.js"></script>
   </head>
 
   <body>
@@ -14,12 +15,9 @@
       <a href="help.html" class="nav-left">🔍 Help </a>
       <a href="about.html" class="nav-right">ℹ️ About </a>
     </nav>
+    <main class="outfit-card">
+      <h1 class="outfit-title">🧥 Outfit Recommender</h1>
 
-    <header>
-      <h1>🧥 Outfit Recommender</h1>
-    </header>
-
-    <main>
       <div class="location-input">
         <label for="collegeSelect" class="visually-hidden"
           >Select Location</label
@@ -98,9 +96,7 @@
         />
       </div>
 
-      <p id="outfit-suggestion">
-        Outfit recommendation will appear here based on weather
-      </p>
+      <p id="outfit-suggestion"></p>
     </main>
 
     <!-- Persistent Footer -->

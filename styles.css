@@ -41,11 +41,14 @@ h1 {
 }
 
 #weather-container {
-  background-color: #ffffff;
+  margin: 1.5rem auto 0 auto;
+  background-color: #f1faff;
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  color: #004080;
+  width: 90%;
+  max-width: 500px;
   text-align: center;
 }
 
@@ -178,4 +181,225 @@ select {
 }
 .upvote:hover {
   background-color: #1976d2;
+}
+
+/* ===== Help Page Styles ===== */
+
+.help-card {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  width: 100%;
+  margin: 2rem auto;
+  text-align: left;
+}
+
+.help-title {
+  font-size: 2rem;
+  color: #0077b6;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.help-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.help-list {
+  list-style: none;
+  padding-left: 0;
+  line-height: 2;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.help-list li {
+  margin-bottom: 0.8rem;
+  position: relative;
+  padding-left: 1.8rem;
+}
+
+.help-list li::before {
+  content: "💡";
+  position: absolute;
+  left: 0;
+  top: 0.1rem;
+}
+
+.tip-box {
+  background-color: #e8f4ff;
+  border-left: 6px solid #1e90ff;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: #004080;
+}
+
+/* ===== About Page Styles ===== */
+
+.about-card {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  width: 100%;
+  margin: 2rem auto;
+  text-align: left;
+}
+
+.about-title {
+  font-size: 2rem;
+  color: #0077b6;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.about-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.highlight {
+  font-weight: bold;
+  color: #004080;
+}
+/* ===== Forum Page Styles ===== */
+
+.forum-card {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  width: 100%;
+  margin: 2rem auto;
+  text-align: left;
+}
+
+.forum-title {
+  font-size: 2rem;
+  color: #0077b6;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.forum-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+#ai-summary {
+  background-color: #f0faff;
+  border-left: 6px solid #2196f3;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  color: #004080;
+}
+
+#post-box {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+#post-input {
+  flex-grow: 1;
+}
+
+#post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+/* ===== Outfit Page Styles ===== */
+
+.outfit-card {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  width: 100%;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.outfit-title {
+  font-size: 2rem;
+  color: #0077b6;
+  margin-bottom: 1rem;
+}
+
+#weather-display {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+#character-display {
+  margin: 30px 0;
+}
+
+#weather-character {
+  max-width: 200px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#outfit-suggestion {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #004080;
+}
+/* ===== Home Page Styles ===== */
+
+.home-card {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  width: 100%;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.home-title {
+  font-size: 2rem;
+  color: #0077b6;
+  margin-bottom: 1rem;
+}
+
+#collegeSelect {
+  width: 90%;
+  max-width: 400px;
+  margin-bottom: 1rem;
+}
+
+#weather-container {
+  margin-top: 1rem;
+  background-color: #f1faff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  color: #004080;
+}
+
+#tempChart {
+  margin-top: 2rem;
+  max-width: 100%;
 }

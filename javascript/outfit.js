@@ -43,21 +43,34 @@ function updateOutfit(description, temp) {
 
   if (desc.includes('rain')) {
     characterImg.src = 'images/outfit-rainy.png';
-    suggestion.textContent = '🌧 Rainy — Bring a raincoat and umbrella.';
+    typeOutfitSuggestion('🌧 Rainy — Bring a raincoat and umbrella.');
   } else if (desc.includes('snow')) {
     characterImg.src = 'images/outfit-snowy.png';
-    suggestion.textContent = '❄️ Snowy — Bundle up with coat, boots, and scarf!';
+    typeOutfitSuggestion('❄️ Snowy — Bundle up with coat, boots, and scarf!');
   } else if (temp < 50) {
     characterImg.src = 'images/outfit-cold.png';
-    suggestion.textContent = '🧥 Chilly — Wear a jacket or hoodie.';
+    typeOutfitSuggestion('🧥 Chilly — Wear a jacket or hoodie.');
   } else if (temp >= 50 && temp < 75) {
     characterImg.src = 'images/outfit-mild.png';
-    suggestion.textContent = '👕 Mild — Long sleeves or light layers recommended.';
+    typeOutfitSuggestion('👕 Mild — Long sleeves or light layers recommended.');
   } else if (temp >= 75) {
     characterImg.src = 'images/outfit-hot.png';
-    suggestion.textContent = '😎 Hot — T-shirt and shorts weather!';
+    typeOutfitSuggestion('😎 Hot — T-shirt and shorts weather!');
   } else {
     characterImg.src = 'images/default.jpg';
-    suggestion.textContent = '👚 Weather unclear — Dress comfortably.';
+    typeOutfitSuggestion('👚 Weather unclear — Dress comfortably.');
   }
+}
+
+function typeOutfitSuggestion(text) {
+  const suggestion = document.getElementById('outfit-suggestion');
+
+  new TypeIt("#outfit-suggestion", {
+    speed: 40,
+    lifeLike: true,
+    cursor: false
+  })
+    .empty()
+    .type(text)
+    .go();
 }

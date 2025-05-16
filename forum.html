@@ -15,29 +15,25 @@
       <a href="about.html" class="nav-right">ℹ️ About </a>
     </nav>
 
-    <header>
-      <h1>Student Forum</h1>
-    </header>
-
-    <main>
-      <section id="forum">
-        <h2>What Students Are Saying 📣</h2>
-        
-        <!-- AI Summary Placeholder -->
-        <div id="ai-summary">
-          <strong>AI Summary:</strong> Mostly windy with scattered light rain around campus. Most students suggest wearing a hoodie or light jacket.
-        </div>
+    <main class="forum-card">
+      <h1 class="forum-title">Student Forum</h1>
+      <p class="forum-subtitle">See what students are saying about today’s weather 👇</p>
     
-        <!-- Post Input -->
-        <div id="post-box">
-          <input type="text" id="post-input" placeholder="Share your weather update..." />
-          <button onclick="submitPost()">Post</button>
-        </div>
+      <!-- AI Summary -->
+      <div id="ai-summary">
+        <strong>AI Summary:</strong> Mostly windy with scattered light rain around campus. Most students suggest wearing a hoodie or light jacket.
+      </div>
     
-        <!-- Forum Feed -->
-        <ul id="post-list"></ul>
-      </section>
+      <!-- Post Input -->
+      <div id="post-box">
+        <input type="text" id="post-input" placeholder="Share your weather update..." />
+        <button onclick="submitPost()">Post</button>
+      </div>
+    
+      <!-- Forum Feed -->
+      <ul id="post-list"></ul>
     </main>
+    
     
 
     <!-- Persistent Footer -->
