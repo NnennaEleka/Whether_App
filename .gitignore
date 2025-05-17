@@ -1,0 +1,15 @@
+# Ignore node modules and logs
+node_modules/
+npm-debug.log
+.env
+
+# Optional: macOS files
+.DS_Store
+
+# Optional: system files
+Thumbs.db
+
+# Optional: build and cache folders
+dist/
+build/
+.cache/

@@ -1,52 +1,66 @@
 let posts = [];
 
-function submitPost() {
-  const input = document.getElementById('post-input');
-  const text = input.value.trim();
-  if (!text) return;
+window.onload = () => {
+  fetchPosts();
+};
 
-  const post = {
-    text: text,
-    upvotes: 0,
-    id: Date.now()
-  };
+async function fetchPosts() {
+  try {
+    const response = await fetch('/forum_posts');
+    const data = await response.json();
 
-  posts.unshift(post); // add to the top
-  input.value = '';
-  renderPosts();
-  updateAISummary();
-}
+    posts = data; // Update the global posts array for AI summary
 
-function upvotePost(id) {
-  const post = posts.find(p => p.id === id);
-  if (post) {
-    post.upvotes++;
-    renderPosts();
-    updateAISummary();
-  }
-}
-
-function renderPosts() {
     const list = document.getElementById('post-list');
-    list.innerHTML = '';
-  
-    // Sort posts: highest upvotes first, then newest
-    const sortedPosts = [...posts].sort((a, b) => {
-      if (b.upvotes === a.upvotes) {
-        return b.id - a.id; // newer posts first if upvotes are equal
-      }
-      return b.upvotes - a.upvotes; // higher upvotes first
-    });
-  
-    sortedPosts.forEach(post => {
+    list.innerHTML = ''; // Clear current list
+
+    data.forEach(post => {
       const li = document.createElement('li');
       li.innerHTML = `
-        <span>${post.text}</span>
-        <button class="upvote" onclick="upvotePost(${post.id})">👍 ${post.upvotes}</button>
+        <strong>${post.location}</strong>: ${post.text}
+        <span style="float:right;">👍 ${post.upvotes || 0}</span>
       `;
       list.appendChild(li);
     });
+
+    updateAISummary(); //Call the AI summary after rendering posts
+  } catch (error) {
+    console.error('Error fetching posts:', error);
   }
+}
+
+
+async function submitPost() {
+  const text = document.getElementById('post-input').value.trim();
+  const location = localStorage.getItem('selectedLocation'); // ✅ use stored location
+
+  if (!text) {
+    alert('Please enter your post!');
+    return;
+  }
+
+  if (!location) {
+    alert('No location found. Please go to the Home page and select one first.');
+    return;
+  }
+
+  try {
+    const response = await fetch('/forum_post', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, location })
+    });
+
+    const result = await response.json();
+    console.log('Posted:', result);
+
+    fetchPosts();
+    document.getElementById('post-input').value = '';
+  } catch (error) {
+    console.error('Error submitting post:', error);
+  }
+}
+
   
 
 function updateAISummary() {

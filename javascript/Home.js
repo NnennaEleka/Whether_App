@@ -4,6 +4,8 @@ function getWeather() {
   const select = document.getElementById("collegeSelect");
   const location = select.value;
 
+  localStorage.setItem('selectedLocation', location);
+  
   if (!location) return;
 
   const weatherstackURL = `http://api.weatherstack.com/current?access_key=${apiKey}&query=${encodeURIComponent(
