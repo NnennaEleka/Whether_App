@@ -69,5 +69,9 @@ app.post('/api/forum_post', async(req, res) => {
 //     console.log('App is alive on port', + port);
 // });
 
+app.get('/', (req, res) => {
+  res.redirect('/Home.html');
+});
+
 module.exports = app;
 module.exports.handler = serverless(app);
