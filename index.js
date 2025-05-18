@@ -69,10 +69,8 @@ app.post('/api/forum_post', async(req, res) => {
 //     console.log('App is alive on port', + port);
 // });
 
-const path = require('path');
-
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'Home.html'));
+  res.redirect('/Home.html');
 });
 
 module.exports = app;
