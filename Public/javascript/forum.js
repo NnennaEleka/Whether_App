@@ -6,7 +6,7 @@ window.onload = () => {
 
 async function fetchPosts() {
   try {
-    const response = await fetch('/forum_posts');
+    const response = await fetch('/api/forum_posts');
     const data = await response.json();
 
     posts = data; // Update the global posts array for AI summary
