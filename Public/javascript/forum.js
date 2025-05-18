@@ -17,9 +17,9 @@ async function fetchPosts() {
     data.forEach(post => {
       const li = document.createElement('li');
       li.innerHTML = `
-        <strong>${post.location}</strong>: ${post.text}
-        <span style="float:right;">👍 ${post.upvotes || 0}</span>
-      `;
+      <strong>${post.location}</strong>: ${post.text}
+      <button onclick="upvotePost(${post.id})">👍 ${post.upvotes || 0}</button>
+    `;
       list.appendChild(li);
     });
 
@@ -32,34 +32,50 @@ async function fetchPosts() {
 
 async function submitPost() {
   const text = document.getElementById('post-input').value.trim();
-  const location = localStorage.getItem('selectedLocation'); // ✅ use stored location
+  const location = localStorage.getItem('selectedLocation'); // saved from Home
 
-  if (!text) {
-    alert('Please enter your post!');
-    return;
-  }
-
-  if (!location) {
-    alert('No location found. Please go to the Home page and select one first.');
-    return;
-  }
+  if (!text) return alert("Please enter something!");
+  if (!location) return alert("Location not set. Please select on Home page first.");
 
   try {
-    const response = await fetch('/forum_post', {
+    const response = await fetch('/api/forum_post', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text, location })
     });
 
     const result = await response.json();
-    console.log('Posted:', result);
-
-    fetchPosts();
-    document.getElementById('post-input').value = '';
-  } catch (error) {
-    console.error('Error submitting post:', error);
+    if (response.ok) {
+      console.log('Post added:', result);
+      document.getElementById('post-input').value = '';
+      fetchPosts(); // reload posts
+    } else {
+      console.error('POST failed:', result.error);
+    }
+  } catch (err) {
+    console.error('Fetch error:', err);
   }
 }
+
+async function upvotePost(postId) {
+  try {
+    const response = await fetch(`/api/upvote_post?id=${postId}`, {
+      method: 'POST'
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      console.log('Upvoted:', result);
+      fetchPosts(); // Refresh the post list
+    } else {
+      console.error('Upvote failed:', result.error);
+    }
+  } catch (err) {
+    console.error('Fetch error:', err);
+  }
+}
+
+
 
   
 
