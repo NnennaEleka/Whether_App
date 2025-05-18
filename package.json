@@ -2,9 +2,10 @@
   "name": "whether_app",
   "version": "1.0.0",
   "description": "# 🌤️ Whether App",
-  "main": "index.js",
+  "main": "supabaseClient/index.js",
   "scripts": {
-    "start": "nodemon -e '*'",
+    "start": "node supabaseClient/index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -12,7 +13,7 @@
     "url": "git+https://github.com/NnennaEleka/Whether_App.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Nnenna Elekalachi",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/NnennaEleka/Whether_App/issues"

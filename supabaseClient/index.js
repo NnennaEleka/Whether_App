@@ -1,9 +1,11 @@
+require('dotenv').config();
+
 const express = require('express');
 const supabaseClient = require('@supabase/supabase-js');
 const bodyParser = require('body-parser');
 
-const dotenv = require('dotenv');
-dotenv.config();
+// const dotenv = require('dotenv');
+// dotenv.config();
 
 const app = express()
 const port = 3000;
@@ -25,12 +27,11 @@ app.get('/forum_posts', async (req, res) => {
   .order('upvotes', { ascending: false });
 
   if(error) {
-    console.log(`Error: ${error}`)
-    res.statusCode = 400
-    res.send(error)
+    console.error('Supabase error:', error);
+    return res.status(400).json({ error: error.message });
   }
 
-  res.send(data)
+  res.json(data)
 });
 
 app.post('/forum_post', async(req, res) => {
