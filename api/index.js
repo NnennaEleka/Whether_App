@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const supabaseClient = require('@supabase/supabase-js');
 const bodyParser = require('body-parser');
+const serverless = require('serverless-http');
 
 // const dotenv = require('dotenv');
 // dotenv.config();
@@ -15,6 +16,7 @@ app.use(express.static(__dirname + '/public'));
 const supabaseURL = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = supabaseClient.createClient(supabaseURL, supabaseKey);
+
 console.log('Supabase URL:', supabaseURL);
 console.log('Supabase Key:', supabaseKey);
 
@@ -65,3 +67,5 @@ app.listen(port, () => {
     console.log('App is alive on port', + port);
 });
 
+module.exports = app;
+module.exports.handler = serverless(app);
