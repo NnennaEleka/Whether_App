@@ -2,14 +2,19 @@ const express = require('express');
 const supabaseClient = require('@supabase/supabase-js');
 const bodyParser = require('body-parser');
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 const app = express()
 const port = 3000;
 
 app.use(bodyParser.json())
-app.use(express.static(__dirname + '/public'))
-const supabaseURL = 'https://wekxazogbvbhpexyqngi.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indla3hhem9nYnZiaHBleHlxbmdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc1MTUzNDEsImV4cCI6MjA2MzA5MTM0MX0.mSGCeCK6UXI4j8JhYEoSR5HMaevrTDF-EJGHscRkNpM';
+app.use(express.static(__dirname + '/public'));
+const supabaseURL = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = supabaseClient.createClient(supabaseURL, supabaseKey);
+console.log('Supabase URL:', supabaseURL);
+console.log('Supabase Key:', supabaseKey);
 
 app.get('/forum_posts', async (req, res) => {
     console.log('Attempting to get all forum posts')
