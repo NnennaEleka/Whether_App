@@ -2,17 +2,19 @@ require('dotenv').config();
 
 const express = require('express');
 const supabaseClient = require('@supabase/supabase-js');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const serverless = require('serverless-http');
 
 // const dotenv = require('dotenv');
 // dotenv.config();
 
 const app = express()
-const port = 3000;
+// const port = 3000;
 
-app.use(bodyParser.json())
-app.use(express.static(__dirname + '/public'));
+// app.use(bodyParser.json())
+// app.use(express.static(__dirname + '/public'));
+app.use(express.json());
+
 const supabaseURL = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = supabaseClient.createClient(supabaseURL, supabaseKey);
@@ -20,7 +22,7 @@ const supabase = supabaseClient.createClient(supabaseURL, supabaseKey);
 console.log('Supabase URL:', supabaseURL);
 console.log('Supabase Key:', supabaseKey);
 
-app.get('/forum_posts', async (req, res) => {
+app.get('/api/forum_posts', async (req, res) => {
     console.log('Attempting to get all forum posts')
 
     const { data, error } = await supabase
@@ -36,7 +38,7 @@ app.get('/forum_posts', async (req, res) => {
   res.json(data)
 });
 
-app.post('/forum_post', async(req, res) => {
+app.post('/api/forum_post', async(req, res) => {
     console.log('Adding forum post');
 
     console.log(req.body);
@@ -63,9 +65,9 @@ app.post('/forum_post', async(req, res) => {
   res.status(201).json({ message: 'Post created!', post: data[0] });
 });
 
-app.listen(port, () => {
-    console.log('App is alive on port', + port);
-});
+// app.listen(port, () => {
+//     console.log('App is alive on port', + port);
+// });
 
 module.exports = app;
 module.exports.handler = serverless(app);
